@@ -9,12 +9,18 @@ import ru.dudar_ig.shoplist.domain.ShopItem
 class MainViewModel: ViewModel() {
     private val repository = ShopListRepositopyImpl()
 
-    val shopListLD : LiveData<List<ShopItem>>
-    init {
-        val shopList = MutableLiveData<List<ShopItem>>()
-        val list = repository.getShopList()
-        shopList.postValue(list)
-        shopListLD = shopList
+    val shopListLD = repository.getShopList()
+
+    fun delItem(shopItem: ShopItem) {
+        repository.delShopItem(shopItem)
     }
+
+    fun changeEnableItem(shopItem: ShopItem) {
+        val newItem = shopItem.copy(enabled = !shopItem.enabled)
+        repository.editShopItem(newItem)
+    }
+
+
+
 
 }
