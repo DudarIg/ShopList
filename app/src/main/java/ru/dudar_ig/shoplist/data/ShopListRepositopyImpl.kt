@@ -4,9 +4,16 @@ import ru.dudar_ig.shoplist.domain.ShopItem
 import ru.dudar_ig.shoplist.domain.ShopListRepository
 import java.lang.RuntimeException
 
-object ShopListRepositopyImpl: ShopListRepository {
+class ShopListRepositopyImpl: ShopListRepository {
     private val shopList = mutableListOf<ShopItem>()
     private var autoIncrementId = 0
+
+    init {
+        (1..10).forEach {
+            val item = ShopItem("Name $it", it, true)
+            addShopItem(item)
+        }
+    }
 
     override fun addShopItem(shopItem: ShopItem) {
         shopItem.id = autoIncrementId++
