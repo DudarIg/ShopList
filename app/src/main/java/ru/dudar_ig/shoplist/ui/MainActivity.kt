@@ -8,23 +8,33 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import ru.dudar_ig.shoplist.R
 import ru.dudar_ig.shoplist.domain.ShopItem
 
 class MainActivity : AppCompatActivity() {
 
    private val viewModel by viewModels<MainViewModel>()
+    private lateinit var adapter: ShopListAdapter
 
    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.shopListLD.observe(this, Observer {
+       setupRecyclerView()
 
+        viewModel.shopListLD.observe(this, Observer {
+                adapter.shopList = it
         })
 
 
 
+    }
+
+    private fun setupRecyclerView() {
+        val rvShopList = findViewById<RecyclerView>(R.id.rv_shop_list)
+        adapter = ShopListAdapter()
+        rvShopList.adapter = adapter
     }
 
 
