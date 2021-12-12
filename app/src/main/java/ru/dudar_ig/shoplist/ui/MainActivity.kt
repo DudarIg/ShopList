@@ -23,31 +23,12 @@ class MainActivity : AppCompatActivity() {
        llShopList = findViewById(R.id.ll_shop_list)
 
         viewModel.shopListLD.observe(this, Observer {
-            showList(it)
+
         })
 
 
 
     }
 
-    private fun showList(list: List<ShopItem>) {
-        llShopList.removeAllViews()
-        for(shopItem in list) {
-            val layoutId = if(shopItem.enabled) {
-                R.layout.item_shop_enabled
-            } else {
-                R.layout.item_shop_disabled
-            }
-            val view = LayoutInflater.from(this).inflate(layoutId, llShopList, false)
-            val tvName = view.findViewById<TextView>(R.id.name_tv)
-            val tvCount = view.findViewById<TextView>(R.id.count_tv)
-            tvName.text = shopItem.name
-            tvCount.text = shopItem.count.toString()
-            view.setOnLongClickListener{
-                viewModel.changeEnableItem(shopItem)
-                true
-            }
-            llShopList.addView(view)
-        }
-    }
+
 }
