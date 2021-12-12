@@ -39,6 +39,14 @@ class MainActivity : AppCompatActivity() {
                                                         ShopListAdapter.MAX_POOL_SIZE)
         rvShopList.recycledViewPool.setMaxRecycledViews(ShopListAdapter.VIEW_TYPE_DISABLED,
                                                         ShopListAdapter.MAX_POOL_SIZE)
+
+        adapter.funLongClick = {
+            viewModel.changeEnableItem(it)
+        }
+
+        adapter.funShortClick = {
+            Log.d("Short", it.toString())
+        }
     }
 
 

@@ -16,6 +16,9 @@ class ShopListAdapter: RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>(
         field = value
         notifyDataSetChanged()
     }
+    // вызов лямбда функций
+    var funLongClick: ((ShopItem) -> Unit)? = null
+    var funShortClick: ((ShopItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
         Log.d("@@@", "Count: ${++count}" )
@@ -32,7 +35,13 @@ class ShopListAdapter: RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>(
         val shopItem = shopList[position]
         holder.tvName.text = shopItem.name
         holder.tvCount.text = shopItem.count.toString()
+
+        holder.view.setOnClickListener {
+            funShortClick?.invoke(shopItem)
+        }
+
         holder.view.setOnLongClickListener {
+            funLongClick?.invoke(shopItem)
             true
         }
     }
@@ -56,6 +65,9 @@ class ShopListAdapter: RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>(
         val tvCount = view.findViewById<TextView>(R.id.count_tv)
 
     }
+//    interface LongClickListener {
+//        fun onShopItemLongClick(shopItem: ShopItem)
+//    }
 
     companion object {
         const val VIEW_TYPE_ENABLED = 100
