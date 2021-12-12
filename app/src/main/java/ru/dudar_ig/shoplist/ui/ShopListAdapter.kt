@@ -1,6 +1,5 @@
 package ru.dudar_ig.shoplist.ui
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,6 @@ import ru.dudar_ig.shoplist.R
 import ru.dudar_ig.shoplist.domain.ShopItem
 
 class ShopListAdapter: RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
-    var count = 0
     var shopList = listOf<ShopItem>()
     set(value) {
         val callback = ShopListDiffCallback(shopList, value)
@@ -25,7 +23,6 @@ class ShopListAdapter: RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>(
     var funShortClick: ((ShopItem) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
-        Log.d("@@@", "Count: ${++count}" )
         val layout = when (viewType) {
             VIEW_TYPE_ENABLED -> R.layout.item_shop_enabled
             VIEW_TYPE_DISABLED -> R.layout.item_shop_disabled
@@ -63,15 +60,11 @@ class ShopListAdapter: RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>(
         return shopList.size
     }
 
-
     class ShopItemViewHolder(val view: View): RecyclerView.ViewHolder(view) {
         val tvName = view.findViewById<TextView>(R.id.name_tv)
         val tvCount = view.findViewById<TextView>(R.id.count_tv)
 
     }
-//    interface LongClickListener {
-//        fun onShopItemLongClick(shopItem: ShopItem)
-//    }
 
     companion object {
         const val VIEW_TYPE_ENABLED = 100
