@@ -14,13 +14,10 @@ import ru.dudar_ig.shoplist.domain.ShopItem
 class MainActivity : AppCompatActivity() {
 
    private val viewModel by viewModels<MainViewModel>()
-    private lateinit var llShopList: LinearLayout
 
    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-       llShopList = findViewById(R.id.ll_shop_list)
 
         viewModel.shopListLD.observe(this, Observer {
 
