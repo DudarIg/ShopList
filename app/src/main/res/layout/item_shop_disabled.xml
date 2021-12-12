@@ -23,7 +23,7 @@
         <TextView
             android:id="@+id/name_tv"
             android:layout_width="0dp"
-            android:layout_weight="0.9"
+            android:layout_weight="0.8"
             android:textSize="18sp"
             android:textColor="@color/purple_200"
             android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
         <TextView
             android:id="@+id/count_tv"
             android:layout_width="0dp"
-            android:layout_weight="0.1"
+            android:layout_weight="0.2"
             android:textStyle="bold"
             android:gravity="right"
             android:textColor="@color/purple_200"

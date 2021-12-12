@@ -9,11 +9,13 @@ import java.lang.RuntimeException
 class ShopListRepositopyImpl: ShopListRepository {
 
     private val shopListLD = MutableLiveData<List<ShopItem>>()
-    private val shopList = mutableListOf<ShopItem>()
+    private val shopList = sortedSetOf<ShopItem>({
+        o1, o2 -> o1.id.compareTo(o2.id) })
+
     private var autoIncrementId = 0
 
     init {
-        (0..10).forEach {
+        (0..20).forEach {
             val item = ShopItem("Name $it", it, true)
             addShopItem(item)
         }
