@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
+import ru.dudar_ig.shoplist.BuildConfig
 import ru.dudar_ig.shoplist.R
 import ru.dudar_ig.shoplist.domain.ShopItem
 
@@ -47,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         adapter.funShortClick = {
+
+            Toast.makeText(this, "${BuildConfig.API_KEY}", Toast.LENGTH_SHORT).show()
             Log.d("Short", it.toString())
         }
 
